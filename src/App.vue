@@ -26,6 +26,8 @@ const handleKeyUp = (key: string) => {
     pose.value = "idle"
 }
 
+const outline = ref(false)
+
 </script>
 
 <template>
@@ -40,7 +42,7 @@ const handleKeyUp = (key: string) => {
     outline-hidden-color="red"
     :outline-pulse="1000"
     outline-pattern="pattern.jpeg"
-    :map-physics="1"
+    :repulsion="1"
   >
     <Model src="gallery.glb" :scale="20" physics="map">
       <Find
@@ -77,9 +79,13 @@ const handleKeyUp = (key: string) => {
         :x="243.19"
         :y="-910.47"
         :z="-577.26"
+        :outline="outline"
         pbr
       />
     </ThirdPersonCamera>
     <Keyboard @key-press="handleKeyPress" @key-up="handleKeyUp" />
   </World>
+  <div style="position: absolute">
+    <button @click="outline = !outline">toggle outline</button>
+  </div>
 </template>
